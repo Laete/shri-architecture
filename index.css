@@ -1,0 +1,41 @@
+.view-stub
+{
+    width: 50%;
+}
+
+.view-stub__input-block {
+    margin-bottom: 10px;
+}
+
+.view-stub__input {
+    padding: 2px 3px;
+    line-height: 28px;
+    width: 300px;
+}
+
+.view-stub__apply {
+    padding: 3px 15px;
+    background-color: #ffdb4d;
+    line-height: 28px;
+    font-size: 13px;
+    box-shadow: none;
+    border-radius: 3px;
+    border: 1px solid black;
+    margin-left: 10px;
+}
+
+.view-stub__label {
+    width: 483px;
+    background-color: #ddd;
+    color: black;
+    padding: 10px 5px;
+    line-height: 28px;
+}
+
+.log {
+    width: 483px;
+    background-color: #eee;
+    color: black;
+    padding: 10px 5px;
+    line-height: 28px;
+}
