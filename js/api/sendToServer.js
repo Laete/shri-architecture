@@ -6,6 +6,6 @@ export default class ServerApi {
     sendToServer(data) {
         console.log(data);
 
-        this._emitter.trigger('dataIsSent', { data: data })
+        this._emitter.trigger('dataIsSent', { name: data })
     }
 }

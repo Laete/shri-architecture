@@ -4,12 +4,11 @@ export default class EventEmitter {
     }
 
     on(eventName, callback) {
-        let listeners = this._listeners[eventName];
-        if (!listeners) {
-            listeners = [];
+        if (!this._listeners[eventName]) {
+            this._listeners[eventName] = [];
         }
 
-        listeners.push(callback);
+        this._listeners[eventName].push(callback);
     };
 
     trigger(eventName, data) {
