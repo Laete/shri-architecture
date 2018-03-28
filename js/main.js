@@ -4,7 +4,9 @@ import Dispatcher from "./flux/dispatcher";
 import Store from "./flux/store";
 
 import reduce from "./flux/reducer"
-import View from "./flux/view";
+import {Input} from "./components/input";
+import {Events} from "./components/events";
+import {Label} from "./components/label";
 
 export default class App {
     constructor() {
@@ -12,8 +14,10 @@ export default class App {
 
         this._api = new ServerApi(this._globalEmitter);
         this._dispatcher = new Dispatcher();
-        this._view = new View(this._dispatcher);
+        this._events = new Events();
+        this._label = new Label();
 
+        new Input(this._dispatcher);
         const defaultStore = {
             name: '',
             serverName: '',
@@ -27,21 +31,23 @@ export default class App {
         this._globalEmitter.on('storeChanged', (data) => {
             switch (data.actionType) {
                 case 'set_name':
-                    this._api.sendToServer(this._store.getData('name'));
+                    const name = this._store.getData('name');
+                    this._api.sendToServer(name);
                     this._dispatcher.dispatch({
                         type: 'event',
-                        event: 'Отправка на сервер'
+                        event: `Отправка на сервер, имя ${name}`
                     });
                     break;
                 case 'server_sent':
-                    this._view.setLabel(this._store.getData('serverName'));
+                    const serverName = this._store.getData('serverName')
+                    this._label.reset({ label: serverName });
                     this._dispatcher.dispatch({
                         type: 'event',
-                        event: 'Установка лейбла'
+                        event: `Установка лейбла, имя ${serverName}`
                     });
                     break;
                 case 'event':
-                    this._view.setEventLog(this._store.getData('events'));
+                    this._events.reset({ events: this._store.getData('events') });
                     break;
                 default:
                     return;
@@ -54,7 +60,7 @@ export default class App {
             });
             this._dispatcher.dispatch({
                 type: 'event',
-                event: 'Данные пришли с сервера'
+                event: `Данные пришли с сервера, имя ${data.name}`
             });
         })
     }

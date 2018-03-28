@@ -4,7 +4,7 @@ export default class ServerApi {
     }
 
     sendToServer(data) {
-        console.log(data);
+        console.log(`Отправляем на сервер имя ${data}`);
 
         this._emitter.trigger('dataIsSent', { name: data })
     }
