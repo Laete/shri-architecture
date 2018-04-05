@@ -8,7 +8,7 @@ export class Label extends View {
         emitter.on('storeChanged', (data) => {
             if (data.actionType === 'server_sent') {
                 const serverName = data.serverName;
-                this._label.reset({ label: serverName });
+                this.reset({ label: serverName });
                 dispatcher.dispatch({
                     type: 'event',
                     event: `Установка лейбла, имя ${serverName}`
@@ -16,8 +16,6 @@ export class Label extends View {
             }
         })
     }
-
-    _initView() {}
 
     _setData(data) {
         this._label = data.label ? data.label : this._label;

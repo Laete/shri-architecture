@@ -1,4 +1,4 @@
-class ServerApi {
+export default class ServerApi {
     constructor(emitter, dispatcher) {
         this._dispatcher = dispatcher;
 

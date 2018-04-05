@@ -8,9 +8,6 @@ export class Events extends View {
             this.reset({ events: data.events });
         })
     }
-
-    _initView() {}
-
     _setData(data) {
         this._events = data.events ? data.events : this._events;
     }
