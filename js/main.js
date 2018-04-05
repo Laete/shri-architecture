@@ -19,9 +19,8 @@ export default class App {
     }
 
     _initViews() {
-        this._events = new Events(this._globalEmitter);
-        this._label = new Label(this._globalEmitter, this._dispatcher);
-
+        new Events(this._globalEmitter);
+        new Label(this._globalEmitter, this._dispatcher);
         new Button(this._globalEmitter, this._dispatcher);
     }
 
