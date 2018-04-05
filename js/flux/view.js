@@ -1,6 +1,7 @@
 export default class View {
-    constructor(dispatcher) {
+    constructor(emitter, dispatcher) {
         this._dispatcher = dispatcher;
+        this._emitter = emitter;
         this._initView();
     }
 

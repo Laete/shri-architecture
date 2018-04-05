@@ -1,4 +1,4 @@
-import View from "../flux/view";
+import View from "../../flux/view";
 
 export class Input extends View {
     constructor(dispatcher) {

@@ -1,9 +1,12 @@
-import View from "../flux/view";
+import View from "../../flux/view";
 
 export class Events extends View {
-    constructor() {
-        super();
+    constructor(emitter) {
+        super(emitter);
         this._events = undefined;
+        emitter.on('storeChanged', (data) => {
+            this.reset({ events: data.events });
+        })
     }
 
     _initView() {}

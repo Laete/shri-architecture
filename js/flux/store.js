@@ -1,16 +1,10 @@
 export default class Store {
     constructor(defaultStore, reducer, dispatcher, emitter) {
-        this._store = defaultStore;
-        this._reduce = reducer;
-        this._emitter = emitter;
+        let store = defaultStore;
 
         dispatcher.register((action) => {
-            this._store = this._reduce(this._store, action);
-            this._emitter.trigger('storeChanged', { actionType: action.type });
+            store = reducer(store, action);
+            emitter.trigger('storeChanged', { actionType: action.type, ...store });
         });
-    }
-
-    getData(fieldName) {
-        return this._store[fieldName];
     }
 }
